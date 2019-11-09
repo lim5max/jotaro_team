@@ -1,0 +1,57 @@
+@charset "utf-8";
+/* CSS Document */
+body{
+	font-family: Baskerville, "Palatino Linotype", Palatino, "Century Schoolbook L", "Times New Roman", "serif";
+	color: #000000;
+	margin: 0;
+	background: #FFFFFF;
+}
+form {
+
+position: absolute;
+width: 569px;
+height: 649px;
+left: 435px;
+top: 54px;
+
+background: #5EDFFF;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+border-radius: 43px;
+}
+form1{
+	position: absolute;
+width: 568px;
+height: 98px;
+left: 435px;
+top: 605px;
+
+background: #B2FCFF;
+border: 1px solid #000000;
+box-sizing: border-box;
+border-radius: 0px 9px 43px 43px;
+}
+form2{
+position: absolute;
+width: 110px;
+height: 48px;
+left:400px;
+top: 25px;
+
+background: #C70D3A;
+border: 1px solid #000000;
+box-sizing: border-box;
+	border-radius: 43px;
+}
+form3{
+	position: absolute;
+width: 86px;
+height: 86px;
+left: 50px;
+top: 10px;
+
+background: #42B883;
+border: 1px solid #000000;
+box-sizing: border-box;
+border-radius: 43px;
+}
+
