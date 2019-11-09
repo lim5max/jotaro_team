@@ -25,6 +25,6 @@ app.get('/', (req, res)=>{
 
 port = 3030
 http.listen(port, ()=>{
-    console.log(`server running, https://localhost:${port}`)
+    console.log('http://goroscop.herokuapp.com/'+port)
 })
 //http.createS
