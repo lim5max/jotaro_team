@@ -1,0 +1,27 @@
+{
+  "name": "jotaro_team",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lim5max/jotaro_team.git"
+  },
+  "author": "Max",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lim5max/jotaro_team/issues"
+  },
+  "homepage": "https://github.com/lim5max/jotaro_team#readme",
+  "dependencies": {
+    "ejs-locals": "^1.0.2",
+    "express": "^4.17.1",
+    "express-validator": "^6.2.0",
+    "http": "0.0.0",
+    "nodemon": "^1.19.4",
+    "socket.io": "^2.3.0"
+  }
+}

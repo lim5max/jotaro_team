@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+
+#like {
+    width: 50px;
+    height: 50px;
+    background-color: chartreuse;
+}
+#dislike{
+    width: 50px;
+    height: 50px;
+    background-color: crimson;
+}
+
+</style>
+<body>
+<section>
+<div class="text-pr" id="text">
+    <p><% function() { %>
+    
+    
+    
+    
+    
+    
+    <% } %>
+    </p>
+</div>
+<div id="class">
+    <div id="like"></div> 
+    <div id="dislike"></div>
+</div>
+
+</section>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<script>  
+let text =  document.getElementById('text').getElementsByTagName('p')
+
+let like = document.getElementById('like')
+let dislike = document.getElementById('dislike')
+function randomInteger(min, max) {
+  // получить случайное число от (min-0.5) до (max+0.5)
+  let rand = min - 0.5 + Math.random() * (max - min + 1);
+  return Math.round(rand);
+}
+like.addEventListener("click" , ()=>{
+
+}
+)
+dislike.addEventListener("click", ()=>{
+
+})
+</script>
+</body>
+</html>
