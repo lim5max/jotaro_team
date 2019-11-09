@@ -24,7 +24,7 @@ app.get('/', (req, res)=>{
 })
 
 
-port = 3030
+port = process.env.PORT
 http.listen(port, ()=>{
     console.log('http://gorosc.herokuapp.com/'+port)
 })
