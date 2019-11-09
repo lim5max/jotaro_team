@@ -24,5 +24,8 @@
     "http": "0.0.0",
     "nodemon": "^1.19.4",
     "socket.io": "^2.3.0"
+  },
+  "devDependencies": {
+    "ejs": "^2.5.5"
   }
 }
