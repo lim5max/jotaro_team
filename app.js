@@ -1,3 +1,4 @@
+require('dotenv').config()
 const app = require('express')();
 const express = require('express')
 let http = require('http').createServer(app)
@@ -25,6 +26,6 @@ app.get('/', (req, res)=>{
 
 port = 3030
 http.listen(port, ()=>{
-    console.log('http://goroscop.herokuapp.com/'+port)
+    console.log('http://gorosc.herokuapp.com/'+port)
 })
 //http.createS
