@@ -1,12 +1,13 @@
 #!/usr/bin/env python
 # coding: utf-8
+import sys
+name = sys.argv[0]
 
-name = "Ivan"
-age = int(29) 
-interest = int(9)
+age = sys.argv[1]
+interest = sys.argv[2]
 
 #gender = int(0)
-rows = int(300)
+rows = int(200)
 
 import datetime #подтягиваем текущую дату и преобразуем в строку
 today= datetime.date.today()
@@ -37,9 +38,17 @@ import random #функция рандомного числа с солью
 x1 = abs(random.randint(1,rows)-solt)
 x2 = abs(random.randint(1,rows)-solt)
 x3 = abs(random.randint(1,rows)-solt)
-print(1)
 
+file  = open('./json/text.json', 'r')
+a = ""
+for (i, index) in file.readlines():
+    if index == x1:
+        a+=i
+    elif index == x2:
+        a+=i
+    elif index == x3:
+        a+=i
 
-
-
-
+file.close()
+print(a)
+sys.stdout.flush()
