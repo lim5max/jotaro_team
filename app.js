@@ -2,7 +2,11 @@ require('dotenv').config()
 const app = require('express')();
 const express = require('express')
 let http = require('http').createServer(app)
+const { DateTime } = require("luxon");
+const fs = require('fs')
+
 const io = require('socket.io')(http);
+const bodyParser = require('body-parser')
 const { body, validationResult } = require('express-validator');
 const router = new express.Router();
 textt = [
@@ -14,13 +18,56 @@ textt = [
 app.engine('ejs', require('ejs-locals'));
 app.set('views', __dirname+'/templates/' );
 app.set('view engine', 'ejs');
+app.use(bodyParser.json());
 
+app.use(bodyParser.urlencoded({ extended: true }));
 
 
 app.get('/', (req, res)=>{
-    res.render('index', {
-        data: textt
+    res.render('horoscope', {
+        data: {
+            error: []
+        }
     })
+})
+app.post("/", (req, res)=>{
+
+    
+    let error = {error: []}
+
+    let name = req.body.username
+    let date = req.body.newdate
+    //console.log(date)
+    let now = DateTime.local();
+    let user_date = DateTime.fromISO(date)
+    let age = now.year - user_date.year
+    let password = req.body.password
+    if (password.length < 5 ){
+        error.error.push("Длина пароля не менее 5 символов")
+    }
+    if (name.length < 6){
+        error.error.push("Имя пользователя должно быть не менее 5 символов")
+    }
+    let user= {}
+    if (error.error.length == 0){
+        user = {
+            password : password,
+            name: name,
+            interests: Math.round(Math.random(1, 16)),
+            date: date,
+            age : age,
+            key_words : []
+
+        }
+        console.log(user)
+        fs.writeFileSync(__dirname+"/json/user.json", user)
+    }else{
+        console.log(error)
+        res.render('horoscope', {
+            data : error
+        })
+    }
+    
 })
 
 
