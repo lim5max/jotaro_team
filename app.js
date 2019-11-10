@@ -1,10 +1,11 @@
 require('dotenv').config()
 const app = require('express')();
-const express = require('express')
+const express = require('express');
+
 let http = require('http').createServer(app)
 const { DateTime } = require("luxon");
 const fs = require('fs')
-
+let session = require('express-session')
 const fs1 = require('promise-fs')
 const helmet = require('helmet');
 const io = require('socket.io')(http);
@@ -21,6 +22,7 @@ app.engine('ejs', require('ejs-locals'));
 app.set('views', __dirname+'/templates/' );
 app.set('view engine', 'ejs');
 app.use(bodyParser.json());
+app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 60000 }}))
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(helmet());
@@ -63,6 +65,12 @@ app.post("/", async (req, res)=>{
             key_words : []
 
         }
+    req.session.user = {
+        username : user.name,
+        password : user.password,
+        age: user.age,
+        interests: user.interests
+    }
         console.log(user)
         async function GET_JSON (){
 
@@ -84,7 +92,7 @@ app.post("/", async (req, res)=>{
         res.redirect('/login')
     }else{
         console.log(error)
-        res.render('horoscope', {
+        res.render('horoscope1', {
             data : error
         })
     }
@@ -93,10 +101,41 @@ app.post("/", async (req, res)=>{
 
 app.get('/login', (req, res)=>{
     res.render('login')
+    
+    
+})
+app.get('/main', (req, res)=>{
+    if (req.session.user){
+        var spawn = require("child_process").spawn; 
+      
+    // Parameters passed in spawn - 
+    // 1. type_of_script 
+    // 2. list containing Path of the script 
+    //    and arguments for the script  
+      
+    // E.g : http://localhost:3000/name?firstname=Mike&lastname=Will 
+    // so, first name = Mike and last name = Will 
+    var process = spawn('python',[__dirname+"./Random2.py", 
+                            req.session.name, 
+                            req.session.age,
+                            req.session.interests
+                        ] ); 
+  
+    // Takes stdout data from script which executed 
+    // with arguments and send this data to res object 
+    process.stdout.on('data', function(data) { 
+        console.log(data.toString()) 
+    } ) 
+        res.render('main')
+    }else{
+        res.redirect('/login')
+    }
+    
 })
 app.post('/login', async (req, res)=>{
     let password = req.body.password
     let username = req.body.username
+    console.log(password)
     async function GET_JSON (){
 
 
@@ -109,11 +148,26 @@ app.post('/login', async (req, res)=>{
 
     }
     daat = await GET_JSON()
-    daat.forEach(element => {
-        if( element.password.toLowerCase() == password.toLowerCase() && element.name.toLowerCase() == username.toLowerCase()){
+ 
 
-        }
-    });
+        daat.forEach(element => {
+        
+
+            if( element.password.toLowerCase() == password.toLowerCase() && element.name.toLowerCase() == username.toLowerCase()){
+                console.log(1)
+                req.session.user = {
+                    username : username,
+                    password : password
+                }
+                console.log(req.session.user)
+                res.redirect('/main')
+            }
+        })
+   
+ 
+    
+
+    
 })
 port = process.env.PORT || 8080
 http.listen(port, ()=>{

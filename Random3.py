@@ -10,13 +10,12 @@ import datetime #подтягиваем текущую дату и преобр�
 today= datetime.date.today()
 today = str(today.isoformat())
 
-def text_to_bits(text, encoding='utf-8', errors='surrogatepass'): #функция преобразования в бинарный код
+def text_to_bits(text, encoding='utf-8', errors='surrogatepass'):
     bits = bin(int.from_bytes(text.encode(encoding, errors), 'big'))[2:]
     return bits.zfill(8 * ((len(bits) + 7) // 8))
 
 bytetext = int(text_to_bits(name)) #преобразуем имя и дату в бинарный код
 today = int(text_to_bits(today))
-
 
 solt = str((bytetext+today)*age*interest) #конструируем соль из набора данных
 
@@ -42,3 +41,21 @@ x3 = abs(random.randint(1,rows)-solt)
 
 
 
+
+file = open("./json/text.txt", "r")
+a = ""
+for (i, index) in file.readlines():
+    if x1 == index:
+        a+=i
+    elif x2 == index:
+        
+        a+=i
+    elif x3 == index:
+        a+=i
+        
+print(a)
+
+
+
+
+file.close()
