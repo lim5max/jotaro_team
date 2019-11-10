@@ -81,7 +81,7 @@ app.post("/", async (req, res)=>{
         
         data.push((user))
         fs.writeFileSync(__dirname+"/json/user.json", JSON.stringify(data))
-        res.render('login', {data: "Вы успешно зарегестрировались"})
+        res.redirect('/login')
     }else{
         console.log(error)
         res.render('horoscope', {
