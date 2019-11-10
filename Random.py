@@ -14,7 +14,7 @@ def text_to_bits(text, encoding='utf-8', errors='surrogatepass'): #функци�
 bytetext = int(text_to_bits(name)) #преобразуем имя и дату в бинарный код
 today = int(text_to_bits(today))
 
-solt = str((bytetext+today)*age*interest+gender) #конструируем соль из набора данных
+solt = str((bytetext+gender+today)*age*interest) #конструируем соль из набора данных
 
 if int(solt[3:6]) <= 300:  #соль, срез трехзначного числа, если больше числа строк, режем до двухзначного
     solt = int(solt[3:6]) 
