@@ -5,6 +5,8 @@ let http = require('http').createServer(app)
 const { DateTime } = require("luxon");
 const fs = require('fs')
 
+const fs1 = require('promise-fs')
+const helmet = require('helmet');
 const io = require('socket.io')(http);
 const bodyParser = require('body-parser')
 const { body, validationResult } = require('express-validator');
@@ -21,6 +23,8 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(helmet());
+
 
 
 app.get('/', (req, res)=>{
@@ -30,7 +34,7 @@ app.get('/', (req, res)=>{
         }
     })
 })
-app.post("/", (req, res)=>{
+app.post("/", async (req, res)=>{
 
     
     let error = {error: []}
@@ -60,7 +64,24 @@ app.post("/", (req, res)=>{
 
         }
         console.log(user)
-        fs.writeFileSync(__dirname+"/json/user.json", user)
+        async function GET_JSON (){
+
+
+            
+            daat = 0
+            await fs1.readFile(__dirname+"/json/user.json").then(data=>{
+                daat = JSON.parse(data)
+            })
+            return daat
+
+        }
+        data = await GET_JSON()
+        console.log(data)
+        
+        
+        data.push((user))
+        fs.writeFileSync(__dirname+"/json/user.json", JSON.stringify(data))
+        res.render('login', {data: "Вы успешно зарегестрировались"})
     }else{
         console.log(error)
         res.render('horoscope', {
@@ -70,7 +91,30 @@ app.post("/", (req, res)=>{
     
 })
 
+app.get('/login', (req, res)=>{
+    res.render('login')
+})
+app.post('/login', async (req, res)=>{
+    let password = req.body.password
+    let username = req.body.username
+    async function GET_JSON (){
 
+
+            
+        daat = 0
+        await fs1.readFile(__dirname+"/json/user.json").then(data=>{
+            daat = JSON.parse(data)
+        })
+        return daat
+
+    }
+    daat = await GET_JSON()
+    daat.forEach(element => {
+        if( element.password.toLowerCase() == password.toLowerCase() && element.name.toLowerCase() == username.toLowerCase()){
+
+        }
+    });
+})
 port = process.env.PORT || 8080
 http.listen(port, ()=>{
     console.log('http://gorosc.herokuapp.com/'+port)
