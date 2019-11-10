@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Документ без названия</title>
+
+<style>
+body{
+	font-family: Baskerville, "Palatino Linotype", Palatino, "Century Schoolbook L", "Times New Roman", "serif";
+	color: #420000;
+	margin: 0;
+	background: #D4D7DD;
+}
+form {
+position: absolute;
+width: 569px;
+height: 649px;
+left: 435px;
+top: 54px;
+background: #EAE9E9;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+border-radius: 43px;
+}
+
+button {
+cursor: pointer;
+padding: 10px 30px;
+height: 50px;
+color: #420000;
+background: #D4D7DD;
+border:none;
+margin-top: 20px;
+text-transform: uppercase;
+font-size: 15px;
+border-radius: 43px;
+}
+
+button:hover {
+opacity: .80;
+font-weight: bold;
+transform: scale(1.1);
+}
+
+</style>
+</head>
+
+<body>
+	
+
+
+
+<form action="/" method="POST">
+<div class="group" align="center">
+		<label for="">Введите ваше имя:<br>
+</label>
+		<input type="text" name="username">
+</div>
+<div class="group" align="center">
+		<label for="">Введите пароль:<br>
+</label>
+		<input type="password" name="password">
+</div>
+<div class="group" align="center">
+		<label for="">Введите вашу дату рождения:<br>
+</label>
+		
+<input type="date" id="start" name="newdate">
+
+</div>
+<div class="group" align="center">
+	<label>Впишите Ваш пол:<br>
+	</label>
+	  <p><input name="sex" type="radio" value="wom">Женщина</p>
+    <p><input name="sex" type="radio" value="man"> Мужчина</p>
+	
+</div>
+<div class="group" align="center">
+	    <label for="" >Выберите один пункт из списка, наиболее подходящий для Вас:<br>
+
+</label>
+		<select align="center">
+		<option>Семья</option>
+		<option>Красота</option>
+		<option>Здоровье</option>
+		<option>Авто</option>
+	    <option>Недвижимость</option>
+		<option>Психология</option>
+		<option>Коты</option>
+		<option>Собаки</option>
+		<option>Туризм</option>
+		<option>Обучение</option>
+		<option>Юмор</option>
+		<option>Финансы</option>
+		<option>Магия</option>
+		<option>Кулинария</option>
+		<option>Дети</option>
+		<option>Эзотерика</option>
+		</select>
+</div>
+ <center> <button type="submit">Узнать гороскоп</button> </center>
+
+</form>	
+</body>
+</html>
