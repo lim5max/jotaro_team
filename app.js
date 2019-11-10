@@ -124,9 +124,9 @@ app.get('/main', (req, res)=>{
     // Takes stdout data from script which executed 
     // with arguments and send this data to res object 
     process.stdout.on('data', function(data) { 
-        console.log(data.toString()) 
+        console.log(data.toString())
     } ) 
-        res.render('main')
+        
     }else{
         res.redirect('/login')
     }
