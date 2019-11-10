@@ -28,7 +28,7 @@ app.use(helmet());
 
 
 app.get('/', (req, res)=>{
-    res.render('horoscope', {
+    res.render('horoscope1', {
         data: {
             error: []
         }
