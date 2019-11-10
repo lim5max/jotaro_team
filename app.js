@@ -115,7 +115,7 @@ app.get('/main', (req, res)=>{
       
     // E.g : http://localhost:3000/name?firstname=Mike&lastname=Will 
     // so, first name = Mike and last name = Will 
-    var process = spawn('python',[__dirname+"./Random2.py", 
+    var process = spawn('python',[__dirname+"./rand5.py", 
                             req.session.name, 
                             req.session.age,
                             req.session.interests
@@ -124,9 +124,9 @@ app.get('/main', (req, res)=>{
     // Takes stdout data from script which executed 
     // with arguments and send this data to res object 
     process.stdout.on('data', function(data) { 
-        console.log(data.toString())
+        console.log(data.toString()) 
     } ) 
-        
+        res.render('main')
     }else{
         res.redirect('/login')
     }
@@ -156,8 +156,11 @@ app.post('/login', async (req, res)=>{
             if( element.password.toLowerCase() == password.toLowerCase() && element.name.toLowerCase() == username.toLowerCase()){
                 console.log(1)
                 req.session.user = {
-                    username : username,
-                    password : password
+                    username : element.name,
+                    password : element.password,
+                    age : element.age,
+                    interests: element.interests
+
                 }
                 console.log(req.session.user)
                 res.redirect('/main')
