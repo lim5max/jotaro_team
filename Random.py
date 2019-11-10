@@ -1,68 +1,72 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[195]:
+# In[259]:
 
 
 name = "Ivan"
 
 
-# In[196]:
+# In[260]:
 
 
 age = int(29) 
 
 
-# In[197]:
+# In[261]:
 
 
 interest = int(9)
 
 
-# In[198]:
+# In[262]:
 
 
 gender = int(0)
 
 
-# In[199]:
+# In[263]:
 
 
-def text_to_bits(text, encoding='utf-8', errors='surrogatepass'):
+import datetime #подтягиваем текущую дату и преобразуем в строку
+today= datetime.date.today()
+today = str(today.isoformat())
+  
+
+
+# In[264]:
+
+
+def text_to_bits(text, encoding='utf-8', errors='surrogatepass'): #функция преобразования в бинарный код
     bits = bin(int.from_bytes(text.encode(encoding, errors), 'big'))[2:]
     return bits.zfill(8 * ((len(bits) + 7) // 8))
 
 
-# In[200]:
+# In[265]:
 
 
-bytetext = int(text_to_bits(name))
+bytetext = int(text_to_bits(name)) #преобразуем имя и дату в бинарный код
+today = int(text_to_bits(today))
 
 
-# In[201]:
+# In[266]:
 
 
-text_to_bits(name)
-
-
-# In[202]:
-
-
-solt = str(bytetext*age*interest+gender)
+solt = str((bytetext+today)*age*interest+gender) #конструируем соль из набора данных
 solt
 
 
-# In[203]:
+# In[267]:
 
 
-if int(solt[3:6]) <= 300:  #соль, срез трехначного числа, если больше числа строк, режем до двухзначного
+if int(solt[3:6]) <= 300:  #соль, срез трехзначного числа, если больше числа строк, режем до двухзначного
     solt = int(solt[3:6]) 
 else: 
     solt = int(solt[3:5])
 solt
 
 
-# In[204]:
+# In[268]:
 
 
 import random #функция рандомного числа с солью
