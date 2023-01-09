@@ -27,7 +27,7 @@
     "fs": "0.0.1-security",
     "helmet": "^3.21.2",
     "http": "0.0.0",
-    "luxon": "^1.21.1",
+    "luxon": "^1.28.1",
     "mongodb": "^3.3.3",
     "nodemon": "^1.19.4",
     "promise-fs": "^2.1.1",
